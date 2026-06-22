@@ -1,0 +1,18 @@
+rules:
+  - id: hardcoded-google-api-key
+    pattern-regex: (AIzaSy[0-9a-zA-Z_-]{33})
+    message: "Wykryto wpisany na sztywno klucz Google API! Przenieś go do pliku .env."
+    languages:
+      - python
+      - yaml
+      - json
+    severity: ERROR
+    
+  - id: hardcoded-openai-api-key
+    pattern-regex: (sk-[a-zA-Z0-9]{48})
+    message: "Wykryto wpisany na sztywno klucz OpenAI API! Przenieś go do pliku .env."
+    languages:
+      - python
+      - yaml
+      - json
+    severity: ERROR
