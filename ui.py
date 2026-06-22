@@ -146,7 +146,13 @@ st.markdown("Aplikacja do bezpiecznej analizy multimediów. Główne funkcje: **
 st.sidebar.header("Ustawienia modelu")
 selected_model = st.sidebar.selectbox(
     "Wybierz model LLM:", 
-    ["gemini-2.0-flash", "gemini-2.5-flash", "gemini-2.5-pro"]
+    [
+        "gemini-3.5-flash",       # Free tier — wysoki limit RPD
+        "gemini-3.1-flash-lite",  # Free tier — wysoki limit RPD
+        "gemini-2.5-flash",       # Popularny — niski limit RPD
+        "gemini-2.5-pro",         # Premium — niski limit RPD
+        "gemini-2.0-flash",       # Legacy — niski limit RPD
+    ]
 )
 
 st.sidebar.header("Wybór wejścia")
@@ -172,7 +178,7 @@ if input_mode == "Podaj link YouTube":
     )
     enable_redaction = redaction_choice.startswith("Tak")
 else:
-    uploaded_file = st.file_uploader("Przeciągnij lub wybierz plik", type=["mp3", "wav", "mp4", "mkv", "png", "jpg", "jpeg", "pdf", "docx", "txt"])
+    uploaded_file = st.file_uploader("Przeciągnij lub wybierz plik", type=["mp3", "wav", "m4a", "mp4", "mkv", "png", "jpg", "jpeg", "pdf", "docx", "txt"])
     if uploaded_file is not None:
         # Tymczasowe zapisanie pliku, by węzeł Router mógł go odczytać po ścieżce
         temp_dir = tempfile.gettempdir()
